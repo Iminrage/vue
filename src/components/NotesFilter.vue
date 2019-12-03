@@ -1,8 +1,12 @@
 <template>
   <div class="filters">
-    <input class="filters__input" type="text" v-model="property" :placeholder="placeholder" />
+    <input class="filters__input" type="text" v-model="value" :placeholder="placeholder" />
     <div class="filters__btns">
-      <button class="filters__btn filters__btn--grid" :class="grid && 'filters__btn--active'" @click="setGrid(true)">
+      <button
+        class="filters__btn filters__btn--grid"
+        :class="grid && 'filters__btn--active'"
+        @click="setGrid(true)"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -20,7 +24,11 @@
           <rect x="3" y="14" width="7" height="7" />
         </svg>
       </button>
-      <button class="filters__btn filters__btn--stroke" :class="!grid && 'filters__btn--active'" @click="setGrid(false)">
+      <button
+        class="filters__btn filters__btn--stroke"
+        :class="!grid && 'filters__btn--active'"
+        @click="setGrid(false)"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -50,16 +58,23 @@ export default {
   props: {
     placeholder: {
       type: String,
-      required: false
-    },
-    property: {
-      type: String
+      default: "Search"
     },
     grid: {
       type: Boolean,
       required: true
     }
   },
+  data() {
+    return {
+			value: ""
+		};
+	},
+	watch: {
+		value(val){
+			this.$emit("noteSearch", val);
+		}
+	},
   methods: {
     setGrid(isGrid) {
       if (this.grid) {
