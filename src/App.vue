@@ -12,8 +12,13 @@
         />
       </section>
       <section class="section-notes">
-				<NotesFilter @toggleGrid="grid = !grid" :grid="grid"></NotesFilter>
-        <Notes :grid="grid" :notes="notes" @rmNote="rmNote" />
+        <NotesFilter
+          @noteSearch="query = $event"
+          @toggleGrid="grid = !grid"
+          :grid="grid"
+          placeholder="Найти заметку"
+        ></NotesFilter>
+        <Notes :grid="grid" :notes="notesFilter" @rmNote="rmNote" />
       </section>
     </div>
   </div>
@@ -29,18 +34,30 @@ export default {
     return {
       error: "",
       note: {
-				headPlaceholder: "Введите заголовок заметки здесь...",
-				head: "",
-				bodyPlaceholder: "Введите текст заметки здесь...",
+        headPlaceholder: "Введите заголовок заметки здесь...",
+        head: "",
+        bodyPlaceholder: "Введите текст заметки здесь...",
         body: ""
       },
-			grid: true,
+      grid: true,
       notes: [
         { head: "1st", body: "yeah thats 1st" },
         { head: "2nd", body: "yeah thats 2nd" }
-      ]
+			],
+			query: ""
     };
-  },
+	},
+	computed: {
+		notesFilter(){
+			let newNotes = this.notes;
+			if (!this.query) return newNotes;
+			let query = this.query.trim().toLowerCase();
+			newNotes = newNotes.filter(note=>{
+				if (note.head.trim().toLowerCase().indexOf(query) !== -1 || note.body.trim().toLowerCase().indexOf(query) !== -1) return note
+			});
+			return newNotes;
+		}
+	},
   methods: {
     clearError() {
       this.error = "";
@@ -57,12 +74,12 @@ export default {
     },
     rmNote(index) {
       this.notes.splice(index, 1);
-    }
+    },
   },
   components: {
     Form,
-		Notes,
-		NotesFilter
+    Notes,
+    NotesFilter
   }
 };
 </script>
