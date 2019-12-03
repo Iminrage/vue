@@ -1,0 +1,68 @@
+<template>
+  <div id="app">
+    <div class="container">
+      <section class="section-form">
+        <h2 class="title section-form__title">Notes App!</h2>
+        <Form
+          class="app__form"
+          :note="note"
+          :error="error"
+          @addNote="addNote"
+          @clearError="clearError"
+        />
+      </section>
+      <section class="section-notes">
+				<NotesFilter @toggleGrid="grid = !grid" :grid="grid"></NotesFilter>
+        <Notes :grid="grid" :notes="notes" @rmNote="rmNote" />
+      </section>
+    </div>
+  </div>
+</template>
+
+<script>
+import Form from "./components/Form.vue";
+import Notes from "./components/Notes.vue";
+import NotesFilter from "./components/NotesFilter.vue";
+export default {
+  name: "app",
+  data() {
+    return {
+      error: "",
+      note: {
+				headPlaceholder: "Введите заголовок заметки здесь...",
+				head: "",
+				bodyPlaceholder: "Введите текст заметки здесь...",
+        body: ""
+      },
+			grid: true,
+      notes: [
+        { head: "1st", body: "yeah thats 1st" },
+        { head: "2nd", body: "yeah thats 2nd" }
+      ]
+    };
+  },
+  methods: {
+    clearError() {
+      this.error = "";
+    },
+    addNote() {
+      if (!this.note.head) return (this.error = "invalid head");
+      this.notes.push({
+        ...this.note,
+        date: new Date(Date.now()).toLocaleString()
+      });
+      this.clearError();
+      this.note.head = "";
+      this.note.body = "";
+    },
+    rmNote(index) {
+      this.notes.splice(index, 1);
+    }
+  },
+  components: {
+    Form,
+		Notes,
+		NotesFilter
+  }
+};
+</script>
