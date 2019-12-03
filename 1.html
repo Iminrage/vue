@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://unpkg.com/vue"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+			
+    </div>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          error: null,
+          note: {
+            head: "",
+            body: ""
+          },
+          notes: [
+            { head: "1st", body: "yeah thats 1st" },
+            { head: "2nd", body: "yeah thats 2nd" }
+          ]
+        },
+        methods: {
+          addNote() {
+            if (!this.note.head) return (this.error = "invalid head");
+            this.notes.push({
+              ...this.note,
+              date: new Date(Date.now()).toLocaleString()
+            });
+            this.error = null;
+						this.note.head = "";
+						this.note.body = "";
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
