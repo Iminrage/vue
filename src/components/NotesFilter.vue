@@ -1,6 +1,8 @@
 <template>
   <div class="filters">
-    <input class="filters__input" type="text" v-model="value" :placeholder="placeholder" />
+    <div class="filters__input-wrapper">
+      <input class="filters__input" type="text" v-model="value" :placeholder="placeholder" />
+    </div>
     <div class="filters__btns">
       <button
         class="filters__btn filters__btn--grid"
@@ -67,14 +69,14 @@ export default {
   },
   data() {
     return {
-			value: ""
-		};
-	},
-	watch: {
-		value(val){
-			this.$emit("noteSearch", val);
-		}
-	},
+      value: ""
+    };
+  },
+  watch: {
+    value(val) {
+      this.$emit("noteSearch", val);
+    }
+  },
   methods: {
     setGrid(isGrid) {
       if (this.grid) {
