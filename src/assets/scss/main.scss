@@ -11,7 +11,6 @@ html,
 body {
   padding: 0;
   margin: 0;
-  height: 100%;
 }
 .title {
   margin: 0;
@@ -51,7 +50,7 @@ body {
   display: inline-block;
   box-sizing: border-box;
   width: 100%;
-  padding: 5px 20px 5px 10px;
+  padding: 15px 20px 15px 20px;
   border-radius: 5px;
   border: 1px solid lightgray;
   outline: none;
@@ -64,9 +63,9 @@ body {
   transition: height 0s;
 }
 .form__error-message {
-	position: absolute;
-	display: block;
-	white-space: nowrap;
+  position: absolute;
+  display: block;
+  white-space: nowrap;
   right: 100%;
   top: 50%;
   transform: translateY(-50%);
@@ -99,18 +98,18 @@ body {
   padding: 0;
 }
 .notes__item {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   flex-basis: 100%;
   list-style: none;
   border: 1px solid lightgray;
   border-radius: 5px;
   padding: 10px;
   margin: 20px 0 0 20px;
-	transition: 0.3s all;
-	word-wrap: break-word;
+  transition: 0.3s all;
+  word-wrap: break-word;
 }
 .notes__item--grid {
   flex-basis: 30%;
@@ -157,7 +156,26 @@ body {
   margin-bottom: 20px;
   border-bottom: 1px solid lightgray;
 }
+.filters__input-wrapper {
+	position: relative;
+  &::after {
+    position: absolute;
+    content: "";
+    width: 24px;
+    height: 24px;
+    top: 50%;
+		right: 5px;
+		transform: translateY(-50%);
+    background: url(../img/search-icon.svg) 0 0 / cover no-repeat;
+  }
+}
 .filters__input {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 15px 25px 15px 20px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  outline: none;
 }
 
 .filters__btn {
