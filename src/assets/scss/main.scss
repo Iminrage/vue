@@ -43,8 +43,9 @@ body {
   }
 }
 .form__input-wrapper {
+	display: flex;
   position: relative;
-  margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 .form__input {
   display: inline-block;
@@ -72,6 +73,24 @@ body {
   display: inline-block;
   padding: 0 5px;
   color: red;
+}
+.form__priority-picker{
+	display: flex;
+	margin-left: 20px;
+}
+.form__priority{
+	border: 1px solid lightgrey;
+	background: transparent;
+	cursor: pointer;
+	padding: 0;
+	width: 50px;
+	border-radius: 5px;
+}
+.form__priority--red{
+	background-color: red;
+}
+.form__priority--yellow{
+	background-color: yellow;
 }
 .form__submit {
   display: block;
@@ -204,7 +223,14 @@ body {
     stroke: black;
   }
 }
+
 .filters__btn--grid {
 }
 .filters__btn--stroke {
+}
+.notes__item--yellow{
+	background-color: yellow;
+}
+.notes__item--red{
+	background-color: red;
 }

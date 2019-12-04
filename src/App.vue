@@ -37,12 +37,13 @@ export default {
         headPlaceholder: "Введите заголовок заметки здесь...",
         head: "",
         bodyPlaceholder: "Введите текст заметки здесь...",
-        body: ""
+				body: "",
+				priority: 0
       },
       grid: true,
       notes: [
-        { head: "1st", body: "yeah thats 1st" },
-        { head: "2nd", body: "yeah thats 2nd" }
+        { head: "1st", body: "yeah thats 1st", priority: 0 },
+        { head: "2nd", body: "yeah thats 2nd", priority: 1 }
 			],
 			query: ""
     };
@@ -70,7 +71,7 @@ export default {
       });
       this.clearError();
       this.note.head = "";
-      this.note.body = "";
+			this.note.body = "";
     },
     rmNote(index) {
       this.notes.splice(index, 1);
